@@ -12,7 +12,7 @@ node {
      }
    }
    stage('docker build/push') {
-     docker.withRegistry('https://index.docker.io/v2/', 'DockerHub') {
+     docker.withRegistry('https://index.docker.io/v2/', 'Docker Hub') {
        def app = docker.build("veyselkaraca/nodejs-jenkins-demo:${commit_id}", '.').push()
      }
    }
