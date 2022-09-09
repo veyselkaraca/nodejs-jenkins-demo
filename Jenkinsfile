@@ -16,3 +16,4 @@ node {
        def app = docker.build("veyselkaraca/nodejs-jenkins-demo:${commit_id}", '.').push()
      }
    }
+}
