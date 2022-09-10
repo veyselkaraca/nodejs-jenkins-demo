@@ -24,7 +24,7 @@ node {
      mysql.stop()
    }                                     
    stage('docker build/push') {            
-     docker.withRegistry('https://index.docker.io/v2/', 'Docker Hub') {
+     docker.withRegistry('https://index.docker.io/v2/', 'DockerHub') {
        def app = docker.build("veyselkaraca/nodejs-jenkins-demo:${commit_id}", '.').push()
      }                                     
    }                                       
