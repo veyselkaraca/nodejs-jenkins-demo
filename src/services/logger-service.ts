@@ -1,6 +1,9 @@
 import winston from 'winston';
 import ecsFormat from '@elastic/ecs-winston-format';
-import { errorLogger as errorLoggerFunction, logger as requestLoggerFunction } from 'express-winston';
+import {
+  errorLogger as errorLoggerFunction,
+  logger as requestLoggerFunction,
+} from 'express-winston';
 
 const logger = winston.createLogger({
   level: 'info',
@@ -20,7 +23,7 @@ const errorLogger = errorLoggerFunction({
 const requestLogger = requestLoggerFunction({
   winstonInstance: logger,
   format: ecsFormat({ convertReqRes: true }),
-  msg: 'HTTP {{req.method}} {{res.statusCode}} {{req.url}} - {{res.responseTime}}ms',
+  msg: 'HTTP {{req.method}} {{res.statusCode}} {{req.url}} , {{req.ip}} - {{res.responseTime}}ms',
 });
 
 export { logger, errorLogger, requestLogger };
