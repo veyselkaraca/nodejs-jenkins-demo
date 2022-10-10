@@ -14,8 +14,9 @@ const databaseConnection = async () => {
 };
 const start = async () => {
   await databaseConnection();
-  app.listen(3000, () => {
-    logger.info('Initialization successful -> Listening on port 3000!');
+  const port = process.env.NODE_PORT || 3000;
+  app.listen(port, () => {
+    logger.info(`Initialization successful -> Listening on port ${port}`);
   });
 };
 start();
