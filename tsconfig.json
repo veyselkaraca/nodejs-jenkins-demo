@@ -4,7 +4,7 @@
       "module": "commonjs",                           /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
       "declaration": true,                            /* Generates corresponding '.d.ts' file. */
       "outDir": "./dist",                             /* Redirect output structure to the directory. */
-      "rootDir": "./",                                /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+      "rootDir": "./src",                                /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
       "removeComments": true,                         /* Do not emit comments to output. */
       "strict": true,                                 /* Enable all strict type-checking options. */
       "noImplicitAny": true,                          /* Raise error on expressions and declarations with an implied 'any' type. */
@@ -18,6 +18,6 @@
       ]
     },
     "exclude": ["node_modules"],
-    "include": ["./src", "test"]
+    "include": ["./src"]
   }
   
