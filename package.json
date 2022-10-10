@@ -4,9 +4,21 @@
   "description": "Node JS demo application with Jenkins and Docker configurations",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev --poll -P tsconfig.json src/index.ts",
-    "test": "jest --watchAll=false --no-cache --runInBand --coverage",
-    "test-watch": "jest --watchAll --no-cache --runInBand --coverage"
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "sonar:scanner": "sonar-scanner",
+    "start:node": "ts-node src/main.ts",
+    "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",
+    "start:debug": "tsc-watch -p tsconfig.build.json --onSuccess \"node --inspect-brk dist/main.js\"",
+    "start:prod": "node dist/main.js",
+    "start": "npm run clean && nodemon --watch src -e ts,tsx --exec ts-node src/index.ts",
+    "lint": "eslint . --ignore-path .eslintignore --no-eslintrc --config .eslintrc.json --ext .js,.ts",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "npm run lint:fix && npm run lint && jest",
+    "test:cov": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test-watch-all": "jest --watchAll --no-cache --runInBand --coverage"
   },
   "keywords": [
     "NodeJS",
@@ -28,8 +40,11 @@
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
+    "express-rate-limit": "^6.6.0",
     "express-validator": "^6.14.2",
     "express-winston": "^4.2.0",
+    "helmet": "^6.0.0",
+    "netmask": "^2.0.2",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.21.6",
@@ -39,6 +54,7 @@
     "@types/body-parser": "^1.19.2",
     "@types/express": "^4.17.13",
     "@types/jest": "^29.0.1",
+    "@types/netmask": "^1.0.30",
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
@@ -55,10 +71,15 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "jest": "^29.0.3",
+    "nodemon": "^2.0.19",
     "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
     "supertest": "^6.2.4",
     "ts-jest": "^29.0.0",
-    "ts-node-dev": "^2.0.0",
+    "ts-node": "^10.9.1",
     "typescript": "^4.8.3"
+  },
+  "engines": {
+    "node": ">=4.18.1"
   }
 }
