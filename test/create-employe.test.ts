@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../src/app';
 
-it('repsonds wiht 200', async () => {
+it('repsonds wiht 201', async () => {
   const response = await request(app)
     .post('/api/employee')
     .send({ name: 'John', surname: 'Doe', job: 'Developer' });

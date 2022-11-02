@@ -9,7 +9,6 @@ export const ipCheck = (req: Request, res: Response, next: NextFunction) => {
     if (
       validIps.some((ip) => {
         const block = new Netmask(ip);
-        logger.info(`block is : ${block}`);
         return block.contains(req.ip);
       })
     ) {

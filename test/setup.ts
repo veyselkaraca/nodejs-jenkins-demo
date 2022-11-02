@@ -15,5 +15,5 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  await sequelize.close();
+  await sequelize.drop();
 });

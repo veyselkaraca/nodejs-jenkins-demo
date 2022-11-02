@@ -18,9 +18,9 @@ app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
 app.use(ipCheck);
 app.use('/api', router);
 
-app.all('*', async (req: Request, res: Response) => {
+app.all('*', async (_req: Request, res: Response) => {
   logger.error(`The requested path is not found.`);
-  throw new Error(`The requested path is not found.`);
+  res.sendStatus(404);
 });
 
 app.use(errorLogger);
